@@ -24,4 +24,4 @@ For invalid inputs, such as
 you should print “syntax error”.
 For runtime errors, print “exception”.
 Please treat referencing a variable before it’s assigned a value as an error.
-Note that all tokens are single characters, and you can assume we will not include any whitespace, which should help simplify the scanner implemen- tation.
+Note that all tokens are single characters, and you can assume we will not include any whitespace, which should help simplify the scanner implementation.
