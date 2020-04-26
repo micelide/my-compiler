@@ -1,0 +1,28 @@
+1. Use a recursive descent parser to implement an interpreter for this (LL(1)) arithmetic grammar:
+
+⟨Program⟩ ::= ⟨StmtList⟩ . 
+⟨StmtList⟩ ::= ⟨Stmt⟩ ⟨NextStmt⟩
+⟨NextStmt⟩ ::= ; ⟨StmtList⟩ | ε
+⟨Stmt⟩ ::= ⟨Assign⟩ | ⟨Print⟩ 
+⟨Assign⟩ ::= ⟨Id⟩ = ⟨Expr⟩
+⟨Print⟩ ::= ! ⟨Id⟩
+⟨Expr⟩ ::=  + ⟨Expr ⟩ ⟨Expr ⟩ 
+            | - ⟨Expr ⟩ ⟨Expr ⟩ 
+            | * ⟨Expr ⟩ ⟨Expr ⟩ 
+            | / ⟨Expr ⟩ ⟨Expr ⟩ 
+            | ⟨Id⟩
+            | ⟨Const⟩
+⟨Id⟩ ::= a|b|c
+⟨Const⟩ ::= 0|1|2|3|4|5|6|7|8|9
+
+
+The arithmetic operators indicate addition, subtraction, multiplication, and (integer) division, respectively.
+For example, on the input
+  a=3;b=2;c=+ab;!c.
+Your program should print 5. 
+For invalid inputs, such as
+  a=+12;!a.b
+you should print “syntax error”.
+For runtime errors, print “exception”.
+Please treat referencing a variable before it’s assigned a value as an error.
+Note that all tokens are single characters, and you can assume we will not include any whitespace, which should help simplify the scanner implemen- tation.
