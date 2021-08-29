@@ -17,7 +17,8 @@ long c = C;
 //functions
 void initLookahead();
 void nextTerminal();
-void syntax_error();
+void syntaxError();
+void runtimeError();
 void match(char terminal);
 void cons_t();
 void Id();
