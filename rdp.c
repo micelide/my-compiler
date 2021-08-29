@@ -17,7 +17,7 @@ takes stdin , parses according to the grammar, and outputs the result
 	--unexpected token, syntax error
 	--end of the grammar NULL or '.'
 
-* syntax_error to report an error and stop the recursion
+* syntaxError to report an error and stop the recursion
 
 **/
 #include <stdlib.h>
@@ -33,9 +33,10 @@ void nextTerminal() {
 	++countr; //go to the next terminal in the statement
 	lookahead = statement[countr];
 }
-void syntax_error() {
+void syntaxError() {
 	//print the error at the terminal being examined and exit
-	printf("syntax error\n");
+	printf("
+	       error\n");
 	exit(0);
 }
 void runtime_error() {
@@ -46,7 +47,7 @@ void match(char terminal) {
 		if((lookahead == 0)||(lookahead == '.')) { exit(0); } //done with the statement, exit without an error
 		else { nextTerminal(); } //continue
 	}
-	else { syntax_error(); } //problem
+	else { syntaxError(); } //problem
 }
 void program() { //FIRST(program) = {a, b, c, !}
 
@@ -67,7 +68,7 @@ void program() { //FIRST(program) = {a, b, c, !}
 		printf("finished\n");
 		match('.');
 		break;
-		default: syntax_error();
+		default: syntaxError();
 	}
 	
 }
@@ -86,7 +87,7 @@ void stmtlist() { //FIRST(stmtlist) = {a, b, c, !}
 		case '!': stmt();
 		nextstmt();
 		break;
-		default: syntax_error();
+		default: syntaxError();
 	}
 }
 void stmt() { //FIRST(stmt) = {a, b, c, !}
@@ -100,7 +101,7 @@ void stmt() { //FIRST(stmt) = {a, b, c, !}
 		break;
 		case '!': print();
 		break;
-		default: syntax_error();
+		default: syntaxError();
 	}
 }
 void nextstmt() { //FIRST(nextstmt) = {empty, ;}
@@ -111,7 +112,7 @@ void nextstmt() { //FIRST(nextstmt) = {empty, ;}
 		break;
 		case '.': match('.'); //match will exit gracefully
 		break;
-		default: syntax_error();
+		default: syntaxError();
 	}	
 }
 
@@ -149,7 +150,7 @@ void assign() { //FIRST(assign) = {a, b, c}
         }
 		c = val;
 		break;
-		default: syntax_error();
+		default: syntaxError();
 	}
 }
 void print() { //FIRST(print) = {!}
@@ -354,7 +355,7 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
 		return B;
 		case 'c': Id();
 		return C;
-		default: syntax_error();
+		default: syntaxError();
 		return 0;
 	}
 }
@@ -381,7 +382,7 @@ void cons_t() { //FIRST(const) = {0...9}
 		break;
 		case '9': match('9');
 		break;
-		default: syntax_error();
+		default: syntaxError();
 	}
 }
 void Id() { //FIRST(Id) = {a, b, c}
@@ -393,7 +394,7 @@ void Id() { //FIRST(Id) = {a, b, c}
 		break;
 		case 'c': match('c');
 		break;
-		default: syntax_error();
+		default: syntaxError();
 	}
 }
 
