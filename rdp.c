@@ -39,7 +39,7 @@ void syntaxError() {
 	       error\n");
 	exit(0);
 }
-void runtime_error() {
+void runtimeError() {
 	printf("runtime error\n");
 }
 void match(char terminal) {
@@ -125,7 +125,7 @@ void assign() { //FIRST(assign) = {a, b, c}
 		val = expr();
         if((val == A)||(val == B)||(val == C)) {
             //reference unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 		a = val;
@@ -135,7 +135,7 @@ void assign() { //FIRST(assign) = {a, b, c}
 		val = expr();
         if((val == A)||(val == B)||(val == C)) {
             //reference unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 		b = val;
@@ -145,7 +145,7 @@ void assign() { //FIRST(assign) = {a, b, c}
 		val = expr();
         if((val == A)||(val == B)||(val == C)) {
             //reference unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 		c = val;
@@ -161,20 +161,20 @@ void print() { //FIRST(print) = {!}
 		case 'a':
         if(a == A) {
             //print unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
         else { printf("%lu\n", a); }
 		break;
         case 'b': if(b == B) { //print unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
         else { printf("%lu\n", b); }
 		break;
         case 'c': if(c == C) {
             //print unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
         else { printf("%lu\n", c); }
@@ -223,7 +223,7 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
         }
         else if((ret1 == A)||(ret1 == B)||(ret1 == C)) {
             //referrence unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 		ret2 = expr();
@@ -238,7 +238,7 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
         }
         else if((ret2 == A)||(ret2 == B)||(ret2 == C)) {
             //unassigned var ref
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 
@@ -257,7 +257,7 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
 		}
         else if((ret1 == A)||(ret1 == B)||(ret1 == C)) {
             //referrence unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 		ret2 = expr();
@@ -272,7 +272,7 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
 		}
         else if((ret2 == A)||(ret2 == B)||(ret2 == C)) {
             //unassigned var ref
-            runtime_error();
+            runtimeError();
             exit(0);
         }
             
@@ -291,7 +291,7 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
         }
         else if((ret1 == A)||(ret1 == B)||(ret1 == C)) {
             //referrence unassigned variable
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 		ret2 = expr();
@@ -306,7 +306,7 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
         }
         else if((ret2 == A)||(ret2 == B)||(ret2 == C)) {
             //unassigned var ref
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 
@@ -325,7 +325,7 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
        }
        else if((ret1 == A)||(ret1 == B)||(ret1 == C)) {
            //referrence unassigned variable
-           runtime_error();
+           runtimeError();
            exit(0);
        }
 		ret2 = expr();
@@ -340,12 +340,12 @@ long expr() { //FIRST(expr) = {a, b, c, +, -, *, /, 0..9}
         }
         else if((ret2 == A)||(ret2 == B)||(ret2 == C)) {
             //unassigned var reference
-            runtime_error();
+            runtimeError();
             exit(0);
         }
 		else if(ret2 == 0)
 		{ //cannot divide by 0
-			runtime_error();
+			runtimeError();
 			exit(0); //need this bc method does not exit
 		}
 		return (ret1 / ret2);
@@ -401,7 +401,7 @@ void Id() { //FIRST(Id) = {a, b, c}
 int main(int argc, char **argv)
 {
 	if(argc < 2) {
-		runtime_error();
+		runtimeError();
 		return 0;
 	}
 	strncpy(statement, argv[1], strlen(argv[1]));
